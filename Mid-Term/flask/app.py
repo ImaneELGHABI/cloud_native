@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
-
 import requests as req
+from flask import Flask, flash, redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
 
@@ -36,10 +35,10 @@ def predict():
         }
 
     # Send the input as a post request to the model
-    response = req.post("http://localhost:6000/predict", json=input)
+    response = req.post("http://localhost:3333/predict", json=input)
     prediction = response.json()["prediction"]
     return render_template("predict.html", prediction=prediction)
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)
+    app.run(host="0.0.0.0", port=2222)
